@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="642b45392ad14f27996b790556fb63d5" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="DB01Model1.Kategori" Width="1.5" PointX="2.625" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB01Model1.Musteriler" Width="1.75" PointX="3.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB01Model1.Siparisler" Width="1.5" PointX="9.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB01Model1.Urun" Width="1.5" PointX="6.125" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB01Model1.SiparisDetay" Width="1.5" PointX="10.375" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="DB01Model1.FK_Urun_ToKategori" ManuallyRouted="false" />
+        <AssociationConnector Association="DB01Model1.FK_Siparisler_TomusteriId" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="DB01Model1.FK_SiparisDetay_TosiparisId" ManuallyRouted="false" />
+        <AssociationConnector Association="DB01Model1.FK_SiparisDetay_TosiparisUrunId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB01SonModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DB01EntitiesSON" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Kategori" EntityType="DB01SonModel.Kategori" />
+    <EntitySet Name="Kayit" EntityType="DB01SonModel.Kayit" />
+    <EntitySet Name="Musteriler" EntityType="DB01SonModel.Musteriler" />
+    <EntitySet Name="SiparisDetay" EntityType="DB01SonModel.SiparisDetay" />
+    <EntitySet Name="Siparisler" EntityType="DB01SonModel.Siparisler" />
+    <EntitySet Name="Urun" EntityType="DB01SonModel.Urun" />
+    <AssociationSet Name="FK_Urun_ToKategori" Association="DB01SonModel.FK_Urun_ToKategori">
+      <End Role="Kategori" EntitySet="Kategori" />
+      <End Role="Urun" EntitySet="Urun" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Siparisler_TomusteriId" Association="DB01SonModel.FK_Siparisler_TomusteriId">
+      <End Role="Musteriler" EntitySet="Musteriler" />
+      <End Role="Siparisler" EntitySet="Siparisler" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisDetay_TosiparisId" Association="DB01SonModel.FK_SiparisDetay_TosiparisId">
+      <End Role="Siparisler" EntitySet="Siparisler" />
+      <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SiparisDetay_TosiparisUrunId" Association="DB01SonModel.FK_SiparisDetay_TosiparisUrunId">
+      <End Role="Urun" EntitySet="Urun" />
+      <End Role="SiparisDetay" EntitySet="SiparisDetay" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Kategori">
+    <Key>
+      <PropertyRef Name="katId" />
+    </Key>
+    <Property Name="katId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="katAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Urun" Relationship="DB01SonModel.FK_Urun_ToKategori" FromRole="Kategori" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="Kayit">
+    <Key>
+      <PropertyRef Name="kayitId" />
+    </Key>
+    <Property Name="kayitId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kayitKatId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="kayitUrunId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Musteriler">
+    <Key>
+      <PropertyRef Name="musteriId" />
+    </Key>
+    <Property Name="musteriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="musteriAdsoyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="musteriCepTel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="musteriAdres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="musteriMail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Siparisler" Relationship="DB01SonModel.FK_Siparisler_TomusteriId" FromRole="Musteriler" ToRole="Siparisler" />
+  </EntityType>
+  <EntityType Name="SiparisDetay">
+    <Key>
+      <PropertyRef Name="siparisDetayUrunId" />
+    </Key>
+    <Property Name="siparisDetayUrunId" Type="Int32" Nullable="false" />
+    <Property Name="siparisDetayId" Type="Int32" Nullable="false" />
+    <Property Name="siparisDetayAdetId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Siparisler" Relationship="DB01SonModel.FK_SiparisDetay_TosiparisId" FromRole="SiparisDetay" ToRole="Siparisler" />
+    <NavigationProperty Name="Urun" Relationship="DB01SonModel.FK_SiparisDetay_TosiparisUrunId" FromRole="SiparisDetay" ToRole="Urun" />
+  </EntityType>
+  <EntityType Name="Siparisler">
+    <Key>
+      <PropertyRef Name="siparisId" />
+    </Key>
+    <Property Name="siparisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tarih" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="musteriId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Musteriler" Relationship="DB01SonModel.FK_Siparisler_TomusteriId" FromRole="Siparisler" ToRole="Musteriler" />
+    <NavigationProperty Name="SiparisDetay" Relationship="DB01SonModel.FK_SiparisDetay_TosiparisId" FromRole="Siparisler" ToRole="SiparisDetay" />
+  </EntityType>
+  <EntityType Name="Urun">
+    <Key>
+      <PropertyRef Name="urunId" />
+    </Key>
+    <Property Name="urunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urunAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="urunKatId" Type="Int32" Nullable="false" />
+    <Property Name="urunFiyat" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+    <NavigationProperty Name="Kategori" Relationship="DB01SonModel.FK_Urun_ToKategori" FromRole="Urun" ToRole="Kategori" />
+    <NavigationProperty Name="SiparisDetay" Relationship="DB01SonModel.FK_SiparisDetay_TosiparisUrunId" FromRole="Urun" ToRole="SiparisDetay" />
+  </EntityType>
+  <Association Name="FK_Urun_ToKategori">
+    <End Type="DB01SonModel.Kategori" Role="Kategori" Multiplicity="1" />
+    <End Type="DB01SonModel.Urun" Role="Urun" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategori">
+        <PropertyRef Name="katId" />
+      </Principal>
+      <Dependent Role="Urun">
+        <PropertyRef Name="urunKatId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Siparisler_TomusteriId">
+    <End Type="DB01SonModel.Musteriler" Role="Musteriler" Multiplicity="1" />
+    <End Type="DB01SonModel.Siparisler" Role="Siparisler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Musteriler">
+        <PropertyRef Name="musteriId" />
+      </Principal>
+      <Dependent Role="Siparisler">
+        <PropertyRef Name="musteriId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisDetay_TosiparisId">
+    <End Type="DB01SonModel.Siparisler" Role="Siparisler" Multiplicity="1" />
+    <End Type="DB01SonModel.SiparisDetay" Role="SiparisDetay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Siparisler">
+        <PropertyRef Name="siparisId" />
+      </Principal>
+      <Dependent Role="SiparisDetay">
+        <PropertyRef Name="siparisDetayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SiparisDetay_TosiparisUrunId">
+    <End Type="DB01SonModel.Urun" Role="Urun" Multiplicity="1" />
+    <End Type="DB01SonModel.SiparisDetay" Role="SiparisDetay" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Urun">
+        <PropertyRef Name="urunId" />
+      </Principal>
+      <Dependent Role="SiparisDetay">
+        <PropertyRef Name="siparisDetayUrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

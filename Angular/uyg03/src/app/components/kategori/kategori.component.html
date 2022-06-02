@@ -1,0 +1,53 @@
+<div class="container">
+  <h1>Kategori Liste</h1>
+
+  <mat-form-field appearance="outline" style="width: 250px;">
+    <input matInput placeholder="Aranacak bir değer giriniz" (keyup)="Filtrele($event)" >
+  </mat-form-field>
+  <p>&nbsp;</p>
+
+
+  <button mat-fab color="primary" matTooltip="Kategori ekle" (click)="Ekle()">
+    <mat-icon aria-label="label">library_add</mat-icon>
+  </button>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z16" matSort>
+    <ng-container matColumnDef="katId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Kategori ID
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.katId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="katAdi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Kategori Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.katAdi}} </mat-cell>
+    </ng-container>
+    
+
+    
+    <ng-container matColumnDef="detay">
+      <mat-header-cell *matHeaderCellDef> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+
+       
+        <button mat-icon-button>
+          <mat-icon aria-label="label" matTooltip="Kategoriyi düzenle" (click)="Duzenle(kayit)">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="warn" matTooltip="Kategoriyi sil" (click)="Sil(kayit)">delete</mat-icon>
+        </button>
+
+      </mat-cell>
+    </ng-container>
+    
+  
+ 
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator 
+        [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+</div>

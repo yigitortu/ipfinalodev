@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="13f37420ca23401ba3f11ae05d97dbca" Name="Diagram1">
+        <EntityTypeShape EntityType="DB01SonModel.Kategori" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="DB01SonModel.Kayit" Width="1.5" PointX="5.75" PointY="4.75" />
+        <EntityTypeShape EntityType="DB01SonModel.Musteriler" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="DB01SonModel.SiparisDetay" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="DB01SonModel.Siparisler" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="DB01SonModel.Urun" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="DB01SonModel.FK_Urun_ToKategori" />
+        <AssociationConnector Association="DB01SonModel.FK_Siparisler_TomusteriId" />
+        <AssociationConnector Association="DB01SonModel.FK_SiparisDetay_TosiparisId" />
+        <AssociationConnector Association="DB01SonModel.FK_SiparisDetay_TosiparisUrunId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
